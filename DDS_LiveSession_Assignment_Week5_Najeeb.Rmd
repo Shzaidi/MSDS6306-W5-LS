@@ -8,25 +8,28 @@ output: html_document
 The functions created in this exercise allow conversion from one base to another. 
 For record, R Studio (v3.3.0) sessionInfo is listed in the notes section.
 
-## Item 1: A function called P7 which takes one argument n, and will return (or print) the first n numbers in base 7:
+### Item 1: A function called P7 which takes one argument n, and will return (or print) the first n numbers in base 7:
 
 ```{r include = FALSE, echo = FALSE}
 #Set your desired work directory
 getwd()  
 setwd("C:/Users/najee/Documents/R/MSDS6306-W5-LS")
 
+library(ggplot2)
+library(stats)
+
 # Prelim. / Code prep.
 rm(list = ls()) 
 objects()
 ```
 
-```{r echo = FALSE}
+```{r}
 P7 <- function(n, base = 7) 
 {
   if (n == 0) 
     return(c())
   if (n < 0) 
-    stop(simpleError("Negative number can???t be used with this function"))
+    stop(simpleError("A Negative number cannot be used with this function"))
   nDigits <- ceiling(log(n + 1, 7))
   powers <- 7 ^ (0:nDigits)
   out <- diff(n %% powers)/powers[-length(powers)]
@@ -36,12 +39,13 @@ P7 <- function(n, base = 7)
   out3 <- 1:out2
   return(out3)
 }
-# To use the function, just simple enter the integer desired (n) and it will 
+# To use the function, enter the integer (n) and it will 
 # return the series of the first (n) integer up to the (n) correspondent
-# number # in base 7. The functions also checks for null and negative values. # For example:  
-P7(5)
+# number in base 7. The functions also checks for null and negative values.
+
+P7(55)
 ```
-##  Question 2. Write a function called ???base10to7??? which takes one argument x, and will convert a decimal number to base 7.
+###  Item 2: A function called "Base10to7" which takes one argument x, and will convert a given decimal number to base 7.
 
 ```{r}
 Base10to7 <- function(n, base = 7) 
@@ -49,20 +53,19 @@ Base10to7 <- function(n, base = 7)
   if (n == 0) 
     return(c())
   if (n < 0) 
-    stop(simpleError("Negative number can???t be used with this function"))
+    stop(simpleError("A Negative number cannot be used with this function"))
   
-##  if ( is.scalar(n) == FALSE) 
-##    stop(simpleError("Please use scalar numbers"))
   nDigits <- ceiling(log(n + 1, 7))
   powers <- 7 ^ (0:nDigits)
   out <- diff(n %% powers)/powers[-length(powers)]
   return(rev(out))
 }
+# For example :
+
 Base10to7(25)
 ```
 
-
-## Question 3. Write a function called ???base7to10??? which takes an argument y, and converts a base number 7 to decimal. 
+### Item 3: Write a function called "Base7to10" which takes an argument y, and converts a base number 7 to decimal. 
 
 ```{r}
 Base7to10 = function(base_number, base = 7) 
@@ -74,9 +77,10 @@ Base7to10 = function(base_number, base = 7)
 # To use the function, just simple enter the desired integer (to be considered in base 7) and it will return the correspondent number in base 10. For example: 
 Base7to10(5)
 ```
-## Question 4: generalize the function to take any form & especially steps 1 2 , 3 above:
 
-```{r echo = FALSE}
+### Item 4: A Generalized function to take any form & especially steps 1, 2 and 3 above:
+
+```{r}
 numberInBase <- function(number,base)
   {
   numberInBaseRecur <- function(number,base)
@@ -99,14 +103,16 @@ use <- function(digiseq)
 use(numberInBase(21,2))
 
 # To use the function use(numberInBase(m,n), just simple enter a desired integer as first parameter and the desired base value as second parameter and the function will return the input m number in the selected base n. For example:  
-use(numberInBase(21,2)) # will give you [1] "10101"
-use(numberInBase(30,8)) # will give you [1] "36"
-use(numberInBase(556,10)) # will give you [1] "556"
-use(numberInBase(556,16)) # will give you [1] "22C"
+
+use(numberInBase(21,2)) 
+use(numberInBase(30,8)) 
+use(numberInBase(556,10)) 
+use(numberInBase(556,16)) 
 
 ```
-## Question 5: Plot a bar or histogram chart for each
- As an example, we are using here the functions use(numberInBase(m,n)) to plot a chart with 2 numbers, the first one being the inputed number m (assumed in base 10) and the second one its equivalent in base n
+
+### Item 5A: Plot a histogram chart for item 4:
+If we apply the general conversion function (in Item 4: use(numberInBase(m,n)) to plot a chart with 2 numbers, the first one being the input number m (assumed in base 10) and the second one its equivalent in base n, the graph would look like:
 
 ```{r}
 m <- 167
@@ -115,26 +121,39 @@ c <- use(numberInBase(m , n)) # This returns 247 as the equivalent of 167 (b10) 
 v <- c(m , c)
 v1 <- as.numeric(v)
 
-# using additional arguments to customize a graphic
+# using additional arguments to customize our graph
 v1LabelMain <- "Correspondent numbers in different scale"
 v1LabelX <- "Numbers"
 v1LabelY <- "Values"
 v1RainbowColors <- rainbow(length(v1))
-# Y axis range could be adjusted like this: ylim<-max(v1) + v1LimY <- c(0, ylim) as well as other customizations are possible ie showing legend, values, adding text, dividing the chart in panels, etc. ???
+
+# Y axis range could be adjusted using: ylim<-max(v1) + v1LimY <- c(0, ylim) as well as other customizations are possible ie showing legend, values, adding text, dividing the chart in panels, etc.
 barplot(height = v1, main = v1LabelMain, xlab = v1LabelX, ylab = v1LabelY, ylim = c(0,300), col = v1RainbowColors)
 
 ```
-## aaa
 
-```{r}
-# Question 6: plot a histogram for density function Pr(5<X<15) and the uniform distribution is (0, 30)
-# Can we generalize this function plot?
-# Let's draw a sample of size 1000 from a normal distribution with mean 0 and standard deviation 30 
+### Item 5B: To recreate the graph shown in Question 1 of this exercise we can input the required m, n variables to this function which looks like:
 
+Required features listed are:
+Line width = 3
+Shaded Color = grey40
+Text at (23, 0.025)
+cex = 1.2;
+
+[The graph function is:] A histogram for density function $Pr(5<X<15)$ and the uniform distribution $(0, 30)$:
+
+...
+
+
+### Item 6: Generalized Plot
+
+I have generalized this function plot to draw a sample of size 1000 from a normal distribution with mean 0 and standard deviation 30, as follows:
+
+```{r, fig.height=5.5, fig.width=7}
 x <- rnorm(1000, 0, 30)
 m = mean(x)
 s = sd(x)
-hist(x, col = "#d3d3d3", probability = TRUE, main = "Histograms and density function for a rand (0,30) sample")
+hist(x, col = "green", probability = TRUE, main = "Histograms and density function for a rand (0,30) sample")
 
 # Adding vertical lines to capture 95% of the sample
 lines(c(-s*1.96,-s*1.96), c(0, dnorm(-s*1.96)), col = "green")
@@ -147,7 +166,8 @@ lines(density(x), col = "black")
 
 ```
 
-## References :
+
+### References:
 It would be possible to generalize the function plot. For further references:
  
      * https://cran.r-project.org/web/packages/ggfortify/vignettes/plot_dist.html 
@@ -155,9 +175,8 @@ It would be possible to generalize the function plot. For further references:
      * http://nicercode.github.io/guides/plotting/
 
 ### Notes: 
-A. Question numbers in this exercise were relabelled because the originial Q1 was not clearly worded nor the associated diagram spelled the requirement.
-
-B. 
+A. Response to Question 1 of the exercise is relabelled as Item 5B.
+B. Session Info from R:
 ```{r, echo=TRUE}
 sessionInfo()
 

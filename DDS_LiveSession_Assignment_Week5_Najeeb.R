@@ -30,7 +30,7 @@ P7(25) # will give you [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18
 P7(30) # will give you [1]  1  2  3  4  5  6  7  8  9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 [26] 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 (as 30 in base 10 equals to 42 in base 7
 
 # Question 2. Write a function called ???base10to7??? which takes one argument x, and will convert a decimal number to base 7. At input check  if x is scalar or not and control the input.
-is.scalar <- function(n) is.atomic(n) && length(n) == 1L
+### is.scalar <- function(n) {is.atomic(n) && length(n) == 1L}
 Base10to7 <- function(n, base = 7) 
 { 
   if (n == 0) 
@@ -38,8 +38,8 @@ Base10to7 <- function(n, base = 7)
   if (n < 0) 
     stop(simpleError("Negative number can???t be used with this function"))
   
-  if ( is.scalar(n) == FALSE) 
-    stop(simpleError("Please use scalar numbers"))
+##  if ( is.scalar(n) == FALSE) 
+##    stop(simpleError("Please use scalar numbers"))
   nDigits <- ceiling(log(n + 1, 7))
   powers <- 7 ^ (0:nDigits)
   out <- diff(n %% powers)/powers[-length(powers)]
@@ -115,7 +115,7 @@ barplot(height = v1, main = v1LabelMain, xlab = v1LabelX, ylab = v1LabelY, ylim 
 x <- rnorm(1000, 0, 30)
 m = mean(x)
 s = sd(x)
-hist(x, col = "#d3d3d3", probability = TRUE, main = "Histograms and density function for a rand (0,30) sample")
+hist(x, col = "green", probability = TRUE, main = "Histograms and density function for a rand (0,30) sample")
 
 # Adding vertical lines to capture 95% of the sample
 lines(c(-s*1.96,-s*1.96), c(0, dnorm(-s*1.96)), col = "green")
