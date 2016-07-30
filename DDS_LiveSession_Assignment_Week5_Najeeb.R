@@ -2,6 +2,9 @@
 # Set your desired work directory
 getwd()  
 setwd("C:/Users/najee/Documents/R/MSDS6306-W5-LS")
+library(ggplot2)
+library(stats)
+library(devtools)
 
 # Prelim. / Code prep.
 rm(list = ls()) 
