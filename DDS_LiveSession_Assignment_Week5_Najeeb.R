@@ -1,7 +1,37 @@
 
+
+### July 29-2016 *********************************************************
+# prep for proper HTML rendering when Rmd file is presented on Github
+# installing the latest Rmarkdown
+
+#       install.packages("rmarkdown", type = "source")
+#       devtools::install_github("yihui/knitr")
+
+# Install DataCamp Light package to allow R-console capability on HTML presentation
+#       install.packages("tutorial")
+#       if(!require(devtools)) {
+#          install.packages("devtools")
+#        }
+#        devtools::install_github("datacamp/tutorial")
+
+## Chunck used on Rmarkdown file to run Datacamp capability:
+
+######   ```{r, include=FALSE}
+#######   tutorial::go_interactive()
+######    ```
+
+
+
+# Ensureing document is delivered as rendered HTML, add this to Rmd file:
+
+###### rmarkdown::render("C:/Users/najee/Documents/R/MSDS6306-W5-LS", output_format = "html_document")
+
+# ***********************************************************************
+
 # Set your desired work directory
 getwd()  
 setwd("C:/Users/najee/Documents/R/MSDS6306-W5-LS")
+library(rmarkdown)
 library(ggplot2)
 library(stats)
 library(devtools)
