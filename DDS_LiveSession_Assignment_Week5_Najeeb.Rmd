@@ -1,16 +1,16 @@
+---
+title: "Graphics And Functions in R"
+
+author: "Najeeb Zaidi"
+date: "July 30, 2016"
+output: html_document
+---
 
 ```{r, include=FALSE}
 tutorial::go_interactive()
 
 ```
 
----
-title: "Graphics And Functions in R"
-
-author: "Najeeb Zaidi"
-date: "July 30, 2016"
-rmarkdown::render("C:/Users/najee/Documents/R/MSDS6306-W5-LS", output_format = "html_document")
----
 # Introduction
 This directory presents Doing Data Science MSDS6306 Live Session Assignment Week-5.
 
