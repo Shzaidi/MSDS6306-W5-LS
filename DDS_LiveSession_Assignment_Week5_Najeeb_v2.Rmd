@@ -6,13 +6,15 @@ date: "July 30, 2016"
 output: html_document
 ---
 
+
 ```{r, include=FALSE}
 tutorial::go_interactive()
 
 ```
 
+
 # Introduction
-Doing Data Science MSDS6306 Live Session Assignment Week-5.
+This directory presents Doing Data Science MSDS6306 Live Session Assignment Week-5.
 
 The functions created in this exercise allow conversion from one base to another. 
 For record, R Studio (v3.3.0) sessionInfo is listed in the notes section.
